@@ -1,0 +1,16 @@
+server:
+  port: 8021
+spring:
+  #给项目来个名字
+  application:
+    name: rabbitmq-producer
+  rabbitmq:
+    host: 192.168.88.129
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
