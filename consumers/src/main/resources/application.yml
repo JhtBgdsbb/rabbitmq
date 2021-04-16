@@ -1,19 +1,31 @@
 server:
-  port: 8022
+    port: 8022
 spring:
-  #给项目来个名字
-  application:
-    name: rabbitmq-consumers
-  #配置rabbitMq 服务器
-  rabbitmq:
-    host: 192.168.88.129
-    port: 5672
-    username: admin
-    password: admin
-    listener:
-      direct:
-        #        手动ack
-        acknowledge-mode: manual
-      simple:
-        #        手动ack
-        acknowledge-mode: manual
+    application:
+        name: rabbitmq-consumer
+    rabbitmq:
+        host: 192.168.88.129
+        port: 5672
+        username: admin
+        password: admin
+        prefetch: 1
+        listener:
+            direct:
+                acknowledge-mode: manual
+            simple:
+                acknowledge-mode: manual
+
+properties:
+    queue:
+        insure:
+            add: insureadd
+            update: insureupdate
+            del: insuredel
+        money:
+            add: moneyadd
+            update: moneyupdate
+            del: moneydel
+        financing:
+            add: financingadd
+            update: financingupdate
+            del: financingdel

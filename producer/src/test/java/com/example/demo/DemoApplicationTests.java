@@ -20,7 +20,6 @@ class DemoApplicationTests {
     private RabbitTemplate rabbitTemplate;
 
 
-
     @Test
     void contextLoads() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
