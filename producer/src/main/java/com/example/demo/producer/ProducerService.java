@@ -25,6 +25,9 @@ public class ProducerService {
         return new RabbitAdmin(defaultConnectionFactory);
     }
 
+    @Resource
+    private RabbitAdmin rabbitAdmin;
+
     public void simpleSendMessage(){
         for (int i = 0; i < 5; i++) {
             String message = "简单消息" + i;
@@ -34,7 +37,7 @@ public class ProducerService {
     }
 
     public void workSendMessage() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             String message = "工作消息" + i;
             System.out.println("我是生产信息的：" + message);
             rabbitTemplate.convertAndSend("workQueue", message);

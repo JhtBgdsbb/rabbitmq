@@ -21,7 +21,6 @@ public class WorkConsumers {
     public void readMessage1(Message testMessage, Channel channel) throws IOException, InterruptedException {
         channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
         System.out.println("我是消费信息111  : " + new String(testMessage.getBody()));
-        Thread.sleep(5000);
     }
 
     @RabbitListener(queues = "workQueue")

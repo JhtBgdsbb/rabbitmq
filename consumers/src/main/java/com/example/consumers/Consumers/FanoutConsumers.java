@@ -59,7 +59,6 @@ public class FanoutConsumers {
         System.out.println("我是其他项目消费信息2333  : " + new String(testMessage.getBody()));
     }
 
-//    @RabbitListener(queuesToDeclare = @Queue(value="fanoutQueue3"))
     @RabbitListener( bindings = @QueueBinding(
             value = @Queue(value = "fanoutQueue3", durable = "true"),
             exchange = @Exchange(

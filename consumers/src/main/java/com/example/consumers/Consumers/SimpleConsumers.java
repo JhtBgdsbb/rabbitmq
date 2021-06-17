@@ -20,8 +20,6 @@ public class SimpleConsumers {
     public void readMessage(Message  testMessage, Channel channel) throws IOException {
         channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
         System.out.println("我是消费信息  : " + new String(testMessage.getBody()));
-
-
     }
 
 }
