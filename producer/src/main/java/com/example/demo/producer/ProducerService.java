@@ -36,6 +36,7 @@ public class ProducerService {
         }
     }
 
+    //生产者
     public void workSendMessage() {
         for (int i = 0; i < 5; i++) {
             String message = "工作消息" + i;
@@ -44,6 +45,9 @@ public class ProducerService {
         }
     }
 
+    /**
+     * 生产者
+     */
     public void fanoutSendMessage() {
         for (int i = 0; i < 5; i++) {
             String message = "订阅模式消息" + i;
@@ -55,7 +59,7 @@ public class ProducerService {
     public void directSendMessage() {
         for (int i = 0; i < 5; i++) {
             String message = "Direct(路由模式)" + i;
-            System.out.println("我是生产信息的：" + message);
+            System.out.println("我是生产信息的,routingKey:direct.queue：" + message);
             rabbitTemplate.convertAndSend("direct", "direct.queue", message);
         }
     }
@@ -63,7 +67,7 @@ public class ProducerService {
     public void directSendMessage1() {
         for (int i = 0; i < 5; i++) {
             String message = "Direct(路由模式)1" + i;
-            System.out.println("我是生产信息的1：" + message);
+            System.out.println("我是生产信息的1,routingKey:direct-queue：" + message);
             rabbitTemplate.convertAndSend("direct", "direct-queue", message);
         }
     }
@@ -71,16 +75,18 @@ public class ProducerService {
     public void directSendMessage2() {
         for (int i = 0; i < 5; i++) {
             String message = "Direct(路由模式)2" + i;
-            System.out.println("我是生产信息的2：" + message);
+            System.out.println("我是生产信息的2,routingKey:direct-queue：" + message);
             rabbitTemplate.convertAndSend("direct", "direct-queue", message);
         }
     }
-
+    /**
+     * 生产者
+     */
     public void topicSendMessage() {
         for (int i = 0; i < 5; i++) {
             String message = "Direct(主题模式)" + i;
-            System.out.println("我是生产信息的：" + message);
-            rabbitTemplate.convertAndSend("topic", "person.one", message);
+            System.out.println("我是生产信息的,routingKey:topic.orange.rabbit：" + message);
+            rabbitTemplate.convertAndSend("topic", "topic.orange.rabbit", message);
         }
     }
 

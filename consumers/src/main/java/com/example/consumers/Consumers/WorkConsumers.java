@@ -13,19 +13,20 @@ import java.io.IOException;
  */
 
 
-
+/**
+ * 消费者
+ */
 @Component
 public class WorkConsumers {
 
     @RabbitListener(queues = "workQueue")
-    public void readMessage1(Message testMessage, Channel channel) throws IOException, InterruptedException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是消费信息111  : " + new String(testMessage.getBody()));
+    public void readMessage1(Message testMessage) throws InterruptedException {
+        Thread.sleep(5000);
+        System.out.println("我是消费信息1 : " + new String(testMessage.getBody()));
     }
 
     @RabbitListener(queues = "workQueue")
-    public void readMessage2(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是消费信息222  : " + new String(testMessage.getBody()));
+    public void readMessage2(Message  testMessage){
+        System.out.println("我是消费信息2  : " + new String(testMessage.getBody()));
     }
 }

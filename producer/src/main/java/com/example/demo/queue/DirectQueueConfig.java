@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
  * @create: 2021-04-14 20:54
  */
 
+/**
+ * 队列绑定交换机
+ */
 @Configuration
 public class DirectQueueConfig {
 
@@ -25,7 +28,7 @@ public class DirectQueueConfig {
     }
 
     /**
-     * Direct交换机 起名：testMyQueue
+     * Direct交换机
      *
      * @return
      */
@@ -34,8 +37,8 @@ public class DirectQueueConfig {
         return new DirectExchange("direct", true, false);
     }
 
-        /**
-     * 绑定  将队列和交换机绑定, 并设置用于匹配键：myTest
+   /**
+     * 绑定  将队列和交换机绑定, 并设置用于匹配键：direct.queue
      *
      * @return
      */
@@ -43,7 +46,6 @@ public class DirectQueueConfig {
     Binding bindingDirect() {
         return BindingBuilder.bind(TestDirectQueue()).to(TestDirectExchange()).with("direct.queue");
     }
-
 
     @Bean
     Binding bindingDirect2() {

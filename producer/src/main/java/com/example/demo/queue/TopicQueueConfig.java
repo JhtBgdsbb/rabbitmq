@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Configuration;
  * @create: 2021-04-16 10:27
  */
 
+/**
+ * 队列交换机绑定
+ */
 @Configuration
 public class TopicQueueConfig {
-
-
     @Bean
     public Queue topicQueue() {
         return new Queue("topicQueue") ;
@@ -30,13 +31,11 @@ public class TopicQueueConfig {
 
     @Bean
     Binding BindingTopic(){
-        return BindingBuilder.bind(topicQueue()).to(TestTopicExchange()).with("person.*");
+        return BindingBuilder.bind(topicQueue()).to(TestTopicExchange()).with("*.orange.*");
     }
-
 
     @Bean
     Binding BindingTopic1(){
-        return BindingBuilder.bind(topicQueue1()).to(TestTopicExchange()).with("person.*");
+        return BindingBuilder.bind(topicQueue1()).to(TestTopicExchange()).with("*.*.rabbit");
     }
-
 }

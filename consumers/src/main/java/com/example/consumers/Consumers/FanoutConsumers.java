@@ -16,59 +16,61 @@ import java.io.IOException;
  * @create: 2021-04-12 09:51
  */
 
+/**
+ * 消费者
+ */
 @Component
 public class FanoutConsumers {
 
     @RabbitListener(queues = "fanoutQueue1")
-    public void readMessage1(Message testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是消费信息11111  : " + new String(testMessage.getBody()));
+    public void readMessage1(Message testMessage) {
+        System.out.println("我是消费信息1  : " + new String(testMessage.getBody()));
     }
 
     @RabbitListener(queues = "fanoutQueue2")
-    public void readMessage2(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是消费信息222  : " + new String(testMessage.getBody()));
+    public void readMessage2(Message testMessage) {
+        System.out.println("我是消费信息2  : " + new String(testMessage.getBody()));
     }
 
-//    @RabbitListener(queues = "otherQueue2")
-//    @RabbitListener(queuesToDeclare = @Queue(value="otherQueue2"))
-    @RabbitListener( bindings = @QueueBinding(
-            value = @Queue(value = "otherQueue", durable = "true"),
-            exchange = @Exchange(
-                    value = "fanoutExchange",
-                    ignoreDeclarationExceptions = "true",
-                    type = ExchangeTypes.FANOUT
-            )
-    ))
-    public void readMessage3(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是其他项目消费信息2333  : " + new String(testMessage.getBody()));
-    }
-
-    @RabbitListener( bindings = @QueueBinding(
-            value = @Queue(value = "otherQueue1", durable = "true"),
-            exchange = @Exchange(
-                    value = "fanoutExchange",
-                    ignoreDeclarationExceptions = "true",
-                    type = ExchangeTypes.FANOUT
-            )
-    ))
-    public void readMessage5(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是其他项目消费信息2333  : " + new String(testMessage.getBody()));
-    }
-
-    @RabbitListener( bindings = @QueueBinding(
-            value = @Queue(value = "fanoutQueue3", durable = "true"),
-            exchange = @Exchange(
-                    value = "fanoutExchange",
-                    ignoreDeclarationExceptions = "true",
-                    type = ExchangeTypes.FANOUT
-            )
-    ))
-    public void readMessage4(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
-        System.out.println("我是消费信息4444  : " + new String(testMessage.getBody()));
-    }
+//
+////    @RabbitListener(queues = "otherQueue2")
+////    @RabbitListener(queuesToDeclare = @Queue(value="otherQueue2"))
+//    @RabbitListener( bindings = @QueueBinding(
+//            value = @Queue(value = "otherQueue", durable = "true"),
+//            exchange = @Exchange(
+//                    value = "fanoutExchange",
+//                    ignoreDeclarationExceptions = "true",
+//                    type = ExchangeTypes.FANOUT
+//            )
+//    ))
+//    public void readMessage3(Message  testMessage, Channel channel) throws IOException {
+//        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
+//        System.out.println("我是其他项目消费信息2333  : " + new String(testMessage.getBody()));
+//    }
+//
+//    @RabbitListener( bindings = @QueueBinding(
+//            value = @Queue(value = "otherQueue1", durable = "true"),
+//            exchange = @Exchange(
+//                    value = "fanoutExchange",
+//                    ignoreDeclarationExceptions = "true",
+//                    type = ExchangeTypes.FANOUT
+//            )
+//    ))
+//    public void readMessage5(Message  testMessage, Channel channel) throws IOException {
+//        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
+//        System.out.println("我是其他项目消费信息2333  : " + new String(testMessage.getBody()));
+//    }
+//
+//    @RabbitListener( bindings = @QueueBinding(
+//            value = @Queue(value = "fanoutQueue3", durable = "true"),
+//            exchange = @Exchange(
+//                    value = "fanoutExchange",
+//                    ignoreDeclarationExceptions = "true",
+//                    type = ExchangeTypes.FANOUT
+//            )
+//    ))
+//    public void readMessage4(Message  testMessage, Channel channel) throws IOException {
+//        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
+//        System.out.println("我是消费信息4444  : " + new String(testMessage.getBody()));
+//    }
 }

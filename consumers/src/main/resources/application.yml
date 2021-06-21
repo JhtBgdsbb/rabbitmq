@@ -8,12 +8,12 @@ spring:
         port: 5672
         username: admin
         password: admin
-        prefetch: 1
+        prefetch: 0
         listener:
             direct:
-                acknowledge-mode: manual
+                acknowledge-mode: auto
             simple:
-                acknowledge-mode: manual
+                acknowledge-mode: auto
 
 properties:
     queue:

@@ -17,8 +17,7 @@ import java.io.IOException;
 public class SimpleConsumers {
 
     @RabbitListener(queues = "simpleQueue")
-    public void readMessage(Message  testMessage, Channel channel) throws IOException {
-        channel.basicAck(testMessage.getMessageProperties().getDeliveryTag(), false);
+    public void readMessage(Message  testMessage) {
         System.out.println("我是消费信息  : " + new String(testMessage.getBody()));
     }
 
